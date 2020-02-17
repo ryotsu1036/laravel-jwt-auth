@@ -7,6 +7,7 @@ import Vuetify from 'vuetify';
 import 'vuetify/dist/vuetify.min.css';
 import './bootstrap';
 import store from './store';
+import Axios from 'axios';
 
 Vue.use(Vuex);
 Vue.use(VueRouter);
@@ -38,10 +39,28 @@ Vue.component('login-auth', require('./pages/auth/Login.vue').default);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+let router = new VueRouter(routes);
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    // eslint-disable-next-line no-undef
+    axios.get('user')
+      .then(() => next())
+      .catch(error => {
+        if (error.response.status === 401) {
+          next({ path: '/login' });
+        }
+
+        next();
+      });
+  } else{
+    next();
+  }
+});
 
 new Vue({
   el: '#app',
   store,
-  router: new VueRouter(routes),
+  router: router,
   vuetify: new Vuetify(opts)
 });

@@ -23,11 +23,13 @@ export default {
       children: [
         {
           path: 'home',
-          component: Home
+          component: Home,
+          meta: { requiresAuth: true }
         },
         {
           path: 'about',
-          component: About
+          component: About,
+          meta: { requiresAuth: true }
         }
       ]
     }

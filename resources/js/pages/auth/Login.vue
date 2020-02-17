@@ -111,7 +111,10 @@ export default {
         }
       })
         .then(response => {
-          console.log(response);
+          localStorage.setItem('laravel_token', response.data.access_token);
+          this.username = '';
+          this.password = '';
+          this.$router.push({ path: '/admin' });
         })
         .catch(error => this.errors.record(error.response.data.errors));
     }

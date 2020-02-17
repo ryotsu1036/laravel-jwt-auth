@@ -2376,7 +2376,13 @@ function () {
           password: this.password
         }
       }).then(function (response) {
-        console.log(response);
+        localStorage.setItem('laravel_token', response.data.access_token);
+        _this.username = '';
+        _this.password = '';
+
+        _this.$router.push({
+          path: '/admin'
+        });
       })["catch"](function (error) {
         return _this.errors.record(error.response.data.errors);
       });
@@ -61500,6 +61506,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuetify_dist_vuetify_min_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(vuetify_dist_vuetify_min_css__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./store */ "./resources/js/store/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_9__);
+
 
 
 
@@ -61536,10 +61545,31 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.component('login-auth', __webpack_req
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_3__["default"](_routes__WEBPACK_IMPORTED_MODULE_4__["default"]);
+router.beforeEach(function (to, from, next) {
+  if (to.matched.some(function (record) {
+    return record.meta.requiresAuth;
+  })) {
+    // eslint-disable-next-line no-undef
+    axios.get('user').then(function () {
+      return next();
+    })["catch"](function (error) {
+      if (error.response.status === 401) {
+        next({
+          path: '/login'
+        });
+      }
+
+      next();
+    });
+  } else {
+    next();
+  }
+});
 new vue__WEBPACK_IMPORTED_MODULE_1___default.a({
   el: '#app',
   store: _store__WEBPACK_IMPORTED_MODULE_8__["default"],
-  router: new vue_router__WEBPACK_IMPORTED_MODULE_3__["default"](_routes__WEBPACK_IMPORTED_MODULE_4__["default"]),
+  router: router,
   vuetify: new vuetify__WEBPACK_IMPORTED_MODULE_5___default.a(opts)
 });
 
@@ -61565,6 +61595,7 @@ __webpack_require__.r(__webpack_exports__);
 
 window.axios = axios__WEBPACK_IMPORTED_MODULE_0___default.a;
 axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common['Authorization'] = "Bearer ".concat(localStorage.getItem('laravel_token'));
 axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.baseURL = '/api'; // Add a response interceptor
 
 axios__WEBPACK_IMPORTED_MODULE_0___default.a.interceptors.response.use(function (response) {
@@ -61977,10 +62008,16 @@ __webpack_require__.r(__webpack_exports__);
     },
     children: [{
       path: 'home',
-      component: _pages_admin_Home__WEBPACK_IMPORTED_MODULE_2__["default"]
+      component: _pages_admin_Home__WEBPACK_IMPORTED_MODULE_2__["default"],
+      meta: {
+        requiresAuth: true
+      }
     }, {
       path: 'about',
-      component: _pages_admin_About__WEBPACK_IMPORTED_MODULE_3__["default"]
+      component: _pages_admin_About__WEBPACK_IMPORTED_MODULE_3__["default"],
+      meta: {
+        requiresAuth: true
+      }
     }]
   }]
 });
