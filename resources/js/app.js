@@ -6,7 +6,7 @@ import routes from './routes';
 import Vuetify from 'vuetify';
 import 'vuetify/dist/vuetify.min.css';
 import './bootstrap';
-import store from './store/modules/auth';
+import store from './store';
 
 Vue.use(Vuex);
 Vue.use(VueRouter);

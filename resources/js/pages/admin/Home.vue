@@ -18,15 +18,15 @@
 export default {
   computed: {
     count () {
-      return this.$store.state.count;
+      return this.$store.state.count.count;
     }
   },
   methods: {
     increment () {
-      this.$store.commit('increment');
+      this.$store.commit('count/increment');
     },
     decrement () {
-      this.$store.commit('decrement');
+      this.$store.commit('count/decrement');
     }
   }
 }

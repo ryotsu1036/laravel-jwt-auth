@@ -2064,15 +2064,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: {
     count: function count() {
-      return this.$store.state.count;
+      return this.$store.state.count.count;
     }
   },
   methods: {
     increment: function increment() {
-      this.$store.commit('increment');
+      this.$store.commit('count/increment');
     },
     decrement: function decrement() {
-      this.$store.commit('decrement');
+      this.$store.commit('count/decrement');
     }
   }
 });
@@ -61499,7 +61499,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuetify_dist_vuetify_min_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/dist/vuetify.min.css */ "./node_modules/vuetify/dist/vuetify.min.css");
 /* harmony import */ var vuetify_dist_vuetify_min_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(vuetify_dist_vuetify_min_css__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
-/* harmony import */ var _store_modules_auth__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./store/modules/auth */ "./resources/js/store/modules/auth.js");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./store */ "./resources/js/store/index.js");
 
 
 
@@ -61538,7 +61538,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.component('login-auth', __webpack_req
 
 new vue__WEBPACK_IMPORTED_MODULE_1___default.a({
   el: '#app',
-  store: _store_modules_auth__WEBPACK_IMPORTED_MODULE_8__["default"],
+  store: _store__WEBPACK_IMPORTED_MODULE_8__["default"],
   router: new vue_router__WEBPACK_IMPORTED_MODULE_3__["default"](_routes__WEBPACK_IMPORTED_MODULE_4__["default"]),
   vuetify: new vuetify__WEBPACK_IMPORTED_MODULE_5___default.a(opts)
 });
@@ -61987,10 +61987,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/store/modules/auth.js":
-/*!********************************************!*\
-  !*** ./resources/js/store/modules/auth.js ***!
-  \********************************************/
+/***/ "./resources/js/store/index.js":
+/*!*************************************!*\
+  !*** ./resources/js/store/index.js ***!
+  \*************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -61999,23 +61999,44 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _modules_count__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/count */ "./resources/js/store/modules/count.js");
+
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
-var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
-  state: {
-    count: 0
-  },
-  mutations: {
-    increment: function increment(state) {
-      return state.count++;
-    },
-    decrement: function decrement(state) {
-      return state.count--;
-    }
+/* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
+  modules: {
+    count: _modules_count__WEBPACK_IMPORTED_MODULE_2__["default"]
   }
+}));
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/count.js":
+/*!*********************************************!*\
+  !*** ./resources/js/store/modules/count.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var state = {
+  count: 0
+};
+var mutations = {
+  increment: function increment(state) {
+    state.count++;
+  },
+  decrement: function decrement(state) {
+    state.count--;
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = ({
+  namespaced: true,
+  state: state,
+  mutations: mutations
 });
-/* harmony default export */ __webpack_exports__["default"] = (store);
 
 /***/ }),
 
