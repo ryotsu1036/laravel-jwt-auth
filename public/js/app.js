@@ -62037,8 +62037,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/jiafeng/www/laravel-jwt-auth/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/jiafeng/www/laravel-jwt-auth/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\wamp64\www\laravel-jwt-auth\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\wamp64\www\laravel-jwt-auth\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
