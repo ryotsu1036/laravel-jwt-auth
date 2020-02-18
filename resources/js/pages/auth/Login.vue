@@ -91,12 +91,9 @@ export default {
   },
   data() {
     return {
-      username: '',
-      password: '',
+      username: 'jiafeng',
+      password: '12345678',
       errors: new Errors(),
-      snackbar: false,
-      text: 'My timeout is set to 2000.',
-      timeout: 2000,
     }
   },
   methods: {
@@ -114,7 +111,6 @@ export default {
           localStorage.setItem('laravel_token', response.data.access_token);
           this.username = '';
           this.password = '';
-          console.log(response);
           this.$router.push({ path: '/admin' });
         })
         .catch(error => this.errors.record(error.response.data.errors));

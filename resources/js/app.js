@@ -42,7 +42,9 @@ Vue.component('login-auth', require('./pages/auth/Login.vue').default);
 let router = new VueRouter(routes);
 
 router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.requiresAuth)) {
+  if (to.path === '/login' && localStorage.getItem('laravel_token') !== null) {
+    next({ path: '/admin' });
+  } else if (to.matched.some(record => record.meta.requiresAuth)) {
     // eslint-disable-next-line no-undef
     axios.get('/user', {
       headers: {

@@ -17,15 +17,15 @@
 <script>
 export default {
   computed: {
-    count () {
+    count() {
       return this.$store.state.count.count;
     }
   },
   methods: {
-    increment () {
+    increment() {
       this.$store.commit('count/increment');
     },
-    decrement () {
+    decrement() {
       this.$store.commit('count/decrement');
     }
   }
