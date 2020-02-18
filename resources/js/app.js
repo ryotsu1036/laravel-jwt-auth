@@ -7,7 +7,7 @@ import Vuetify from 'vuetify';
 import 'vuetify/dist/vuetify.min.css';
 import './bootstrap';
 import store from './store';
-import Axios from 'axios';
+import axios from 'axios';
 
 Vue.use(Vuex);
 Vue.use(VueRouter);
@@ -44,14 +44,18 @@ let router = new VueRouter(routes);
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     // eslint-disable-next-line no-undef
-    axios.get('user')
+    axios.get('/user', {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('laravel_token')}`
+      }
+    })
       .then(() => next())
       .catch(error => {
         if (error.response.status === 401) {
           next({ path: '/login' });
+        } else {
+          next();
         }
-
-        next();
       });
   } else{
     next();

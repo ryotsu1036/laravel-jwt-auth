@@ -2379,6 +2379,7 @@ function () {
         localStorage.setItem('laravel_token', response.data.access_token);
         _this.username = '';
         _this.password = '';
+        console.log(response);
 
         _this.$router.push({
           path: '/admin'
@@ -61551,16 +61552,20 @@ router.beforeEach(function (to, from, next) {
     return record.meta.requiresAuth;
   })) {
     // eslint-disable-next-line no-undef
-    axios.get('user').then(function () {
+    axios__WEBPACK_IMPORTED_MODULE_9___default.a.get('/user', {
+      headers: {
+        'Authorization': "Bearer ".concat(localStorage.getItem('laravel_token'))
+      }
+    }).then(function () {
       return next();
     })["catch"](function (error) {
       if (error.response.status === 401) {
         next({
           path: '/login'
         });
+      } else {
+        next();
       }
-
-      next();
     });
   } else {
     next();
@@ -61594,23 +61599,9 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 window.axios = axios__WEBPACK_IMPORTED_MODULE_0___default.a;
-axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common['Authorization'] = "Bearer ".concat(localStorage.getItem('laravel_token'));
-axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.baseURL = '/api'; // Add a response interceptor
+axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'; // axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('laravel_token')}`;
 
-axios__WEBPACK_IMPORTED_MODULE_0___default.a.interceptors.response.use(function (response) {
-  // Any status code that lie within the range of 2xx cause this function to trigger
-  // Do something with response data
-  return response;
-}, function (error) {
-  // Any status codes that falls outside the range of 2xx cause this function to trigger
-  // Do something with response error
-  if (error.response.status === 419) {
-    window.location.reload();
-  }
-
-  return Promise.reject(error);
-});
+axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.baseURL = '/api';
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
@@ -62058,9 +62049,15 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+// initial state
 var state = {
   count: 0
-};
+}; // getters
+
+var getters = {}; // actions
+
+var actions = {}; // mutations
+
 var mutations = {
   increment: function increment(state) {
     state.count++;
@@ -62072,6 +62069,8 @@ var mutations = {
 /* harmony default export */ __webpack_exports__["default"] = ({
   namespaced: true,
   state: state,
+  getters: getters,
+  actions: actions,
   mutations: mutations
 });
 
@@ -62095,8 +62094,8 @@ var mutations = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/jiafeng/www/laravel-jwt-auth/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/jiafeng/www/laravel-jwt-auth/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\wamp64\www\laravel-jwt-auth\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\wamp64\www\laravel-jwt-auth\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
