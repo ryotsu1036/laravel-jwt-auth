@@ -2,7 +2,7 @@
   <div>
     <h2>About</h2>
     <Snackbar></Snackbar>
-    <v-btn small @click="showSnackbar">Normal</v-btn>
+    <v-btn small @click="openSnackbar">Normal</v-btn>
   </div>
 </template>
 
@@ -14,8 +14,8 @@ export default {
     Snackbar
   },
   methods: {
-    showSnackbar() {
-      this.$store.dispatch('snackbar/showSnackbar', {
+    openSnackbar() {
+      this.$store.dispatch('snackbar/open', {
         text: '俏如來',
       })
     }

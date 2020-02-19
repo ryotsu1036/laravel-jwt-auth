@@ -2091,8 +2091,8 @@ __webpack_require__.r(__webpack_exports__);
     Snackbar: _components_Snackbar__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   methods: {
-    showSnackbar: function showSnackbar() {
-      this.$store.dispatch('snackbar/showSnackbar', {
+    openSnackbar: function openSnackbar() {
+      this.$store.dispatch('snackbar/open', {
         text: '俏如來'
       });
     }
@@ -3703,7 +3703,7 @@ var render = function() {
       _vm._v(" "),
       _c("Snackbar"),
       _vm._v(" "),
-      _c("v-btn", { attrs: { small: "" }, on: { click: _vm.showSnackbar } }, [
+      _c("v-btn", { attrs: { small: "" }, on: { click: _vm.openSnackbar } }, [
         _vm._v("Normal")
       ])
     ],
@@ -61680,6 +61680,7 @@ router.beforeEach(function (to, from, next) {
       return next();
     })["catch"](function (error) {
       if (error.response.status === 401) {
+        localStorage.removeItem('laravel_token');
         next({
           path: '/login'
         });
@@ -62283,35 +62284,31 @@ var state = {
   visible: false,
   text: 'Hello, I\'m a snackbar',
   timeout: 6000
-}; // getters
-
-var getters = {}; // actions
-
-var actions = {
-  showSnackbar: function showSnackbar(context, data) {
-    var timeout = data.timeout === undefined ? context.state.timeout : data.timeout;
-    context.commit('setSnackbar', data);
-    setTimeout(function () {
-      context.state.visible = false;
-    }, timeout);
-  }
 }; // mutations
 
 var mutations = {
-  setSnackbar: function setSnackbar(state, data) {
+  open: function open(state, data) {
     state.color = data.color;
     state.visible = true;
     state.text = data.text;
-    state.timeout = data.timeout;
   },
   close: function close(state) {
     state.visible = false;
+  }
+}; // actions
+
+var actions = {
+  open: function open(context, data) {
+    var timeout = context.state.timeout;
+    context.commit('open', data);
+    setTimeout(function () {
+      context.commit('close');
+    }, timeout);
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = ({
   namespaced: true,
   state: state,
-  getters: getters,
   actions: actions,
   mutations: mutations
 });

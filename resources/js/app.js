@@ -54,6 +54,7 @@ router.beforeEach((to, from, next) => {
       .then(() => next())
       .catch(error => {
         if (error.response.status === 401) {
+          localStorage.removeItem('laravel_token');
           next({ path: '/login' });
         } else {
           next();
