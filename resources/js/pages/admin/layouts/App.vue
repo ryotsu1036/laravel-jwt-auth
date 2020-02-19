@@ -73,6 +73,12 @@
           </v-list-item>
         </template>
       </v-list>
+
+      <template v-slot:append>
+        <div class="pa-2">
+          <v-btn block @click="logout">Logout</v-btn>
+        </div>
+      </template>
     </v-navigation-drawer>
 
     <v-app-bar
@@ -130,13 +136,21 @@ export default {
   props: {
     source: String,
   },
-  data: () => ({
-    dialog: false,
-    drawer: null,
-    items: [
-      { icon: 'mdi-contacts', text: 'Home', to: '/admin/home' },
-      { icon: 'mdi-history', text: 'About', to: '/admin/about' },
-    ],
-  }),
+  data() {
+    return {
+      dialog: false,
+      drawer: null,
+      items: [
+        { icon: 'mdi-contacts', text: 'Home', to: '/admin/home' },
+        { icon: 'mdi-history', text: 'About', to: '/admin/about' },
+      ],
+    }
+  },
+  methods: {
+    logout() {
+      localStorage.removeItem('laravel_token');
+      this.$router.push({ path: '/login' });
+    }
+  }
 }
 </script>

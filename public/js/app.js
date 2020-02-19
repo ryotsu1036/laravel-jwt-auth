@@ -2280,6 +2280,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     source: String
@@ -2298,6 +2304,14 @@ __webpack_require__.r(__webpack_exports__);
         to: '/admin/about'
       }]
     };
+  },
+  methods: {
+    logout: function logout() {
+      localStorage.removeItem('laravel_token');
+      this.$router.push({
+        path: '/login'
+      });
+    }
   }
 });
 
@@ -3794,6 +3808,28 @@ var render = function() {
         "v-navigation-drawer",
         {
           attrs: { clipped: _vm.$vuetify.breakpoint.lgAndUp, app: "" },
+          scopedSlots: _vm._u([
+            {
+              key: "append",
+              fn: function() {
+                return [
+                  _c(
+                    "div",
+                    { staticClass: "pa-2" },
+                    [
+                      _c(
+                        "v-btn",
+                        { attrs: { block: "" }, on: { click: _vm.logout } },
+                        [_vm._v("Logout")]
+                      )
+                    ],
+                    1
+                  )
+                ]
+              },
+              proxy: true
+            }
+          ]),
           model: {
             value: _vm.drawer,
             callback: function($$v) {
