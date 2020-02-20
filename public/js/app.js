@@ -2307,15 +2307,18 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     logout: function logout() {
+      var _this = this;
+
       // eslint-disable-next-line no-undef
       axios.post('/auth/logout', {
-        headers: {
-          'Authorization': "Bearer ".concat(localStorage.getItem('laravel_token'))
-        }
-      }).then(function (response) {
-        console.log(response);
-      }); // localStorage.removeItem('laravel_token');
-      // this.$router.push({ path: '/login' });
+        token: localStorage.getItem('laravel_token')
+      }).then(function () {
+        localStorage.removeItem('laravel_token');
+
+        _this.$router.push({
+          path: '/login'
+        });
+      });
     }
   }
 });

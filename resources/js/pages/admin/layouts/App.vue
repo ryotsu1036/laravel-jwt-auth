@@ -149,16 +149,11 @@ export default {
   methods: {
     logout() {
       // eslint-disable-next-line no-undef
-      axios.post('/auth/logout', {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('laravel_token')}`
-        }
-      })
-        .then(response => {
-          console.log(response);
+      axios.post('/auth/logout', { token: localStorage.getItem('laravel_token') })
+        .then(() => {
+          localStorage.removeItem('laravel_token');
+          this.$router.push({ path: '/login' });
         });
-      // localStorage.removeItem('laravel_token');
-      // this.$router.push({ path: '/login' });
     }
   }
 }
