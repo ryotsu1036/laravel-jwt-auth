@@ -45,7 +45,6 @@ router.beforeEach((to, from, next) => {
   if (to.path === '/login' && localStorage.getItem('laravel_token') !== null) {
     next({ path: '/admin' });
   } else if (to.matched.some(record => record.meta.requiresAuth)) {
-    // eslint-disable-next-line no-undef
     axios.get('/user', {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('laravel_token')}`
