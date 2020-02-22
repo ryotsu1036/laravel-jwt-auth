@@ -1,9 +1,13 @@
+import Vue from 'vue';
+import VueRouter from 'vue-router';
 import AppLayout from './pages/admin/layouts/App';
 import Login from './pages/auth/Login';
 import Home from './pages/admin/Home';
 import About from './pages/admin/About';
 
-export default {
+Vue.use(VueRouter);
+
+const routes = {
   mode: 'history',
 
   routes: [
@@ -34,4 +38,6 @@ export default {
       ]
     }
   ]
-}
+};
+
+export default new VueRouter(routes);

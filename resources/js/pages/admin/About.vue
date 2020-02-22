@@ -16,8 +16,9 @@ export default {
   methods: {
     openSnackbar() {
       this.$store.dispatch('snackbar/open', {
+        color: 'success',
         text: '俏如來',
-      })
+      });
     }
   }
 }

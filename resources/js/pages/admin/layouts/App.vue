@@ -148,8 +148,8 @@ export default {
   },
   methods: {
     logout() {
-      // eslint-disable-next-line no-undef
-      axios.post('/auth/logout', { token: localStorage.getItem('laravel_token') })
+      this.$http
+        .post('/auth/logout', { token: localStorage.getItem('laravel_token') })
         .then(() => {
           localStorage.removeItem('laravel_token');
           this.$router.push({ path: '/login' });

@@ -98,22 +98,20 @@ export default {
   },
   methods: {
     login() {
-      // eslint-disable-next-line no-undef
-      axios({
-        method: 'post',
-        url: '/auth/login',
-        data: {
+      this.$http
+        .post('/auth/login', {
           username: this.username,
           password: this.password,
-        }
-      })
+        })
         .then(response => {
           localStorage.setItem('laravel_token', response.data.access_token);
           this.username = '';
           this.password = '';
           this.$router.push({ path: '/admin' });
         })
-        .catch(error => this.errors.record(error.response.data.errors));
+        .catch(error => {
+          this.errors.record(error.response.data.errors);
+        });
     }
   }
 }

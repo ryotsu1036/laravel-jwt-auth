@@ -1984,39 +1984,6 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Snackbar.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Snackbar.vue?vue&type=script&lang=js& ***!
@@ -2093,6 +2060,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     openSnackbar: function openSnackbar() {
       this.$store.dispatch('snackbar/open', {
+        color: 'success',
         text: '俏如來'
       });
     }
@@ -2309,8 +2277,7 @@ __webpack_require__.r(__webpack_exports__);
     logout: function logout() {
       var _this = this;
 
-      // eslint-disable-next-line no-undef
-      axios.post('/auth/logout', {
+      this.$http.post('/auth/logout', {
         token: localStorage.getItem('laravel_token')
       }).then(function () {
         localStorage.removeItem('laravel_token');
@@ -2451,14 +2418,9 @@ function () {
     login: function login() {
       var _this = this;
 
-      // eslint-disable-next-line no-undef
-      axios({
-        method: 'post',
-        url: '/auth/login',
-        data: {
-          username: this.username,
-          password: this.password
-        }
+      this.$http.post('/auth/login', {
+        username: this.username,
+        password: this.password
       }).then(function (response) {
         localStorage.setItem('laravel_token', response.data.access_token);
         _this.username = '';
@@ -2468,7 +2430,7 @@ function () {
           path: '/admin'
         });
       })["catch"](function (error) {
-        return _this.errors.record(error.response.data.errors);
+        _this.errors.record(error.response.data.errors);
       });
     }
   }
@@ -3603,53 +3565,6 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                          (this && this.clearImmediate);
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&":
-/*!*******************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e& ***!
-  \*******************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              )
-            ])
-          ])
-        ])
-      ])
-    ])
-  }
-]
-render._withStripped = true
-
-
 
 /***/ }),
 
@@ -61659,18 +61574,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./routes */ "./resources/js/routes.js");
-/* harmony import */ var vuetify__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify */ "./node_modules/vuetify/dist/vuetify.js");
-/* harmony import */ var vuetify__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vuetify__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var vuetify_dist_vuetify_min_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/dist/vuetify.min.css */ "./node_modules/vuetify/dist/vuetify.min.css");
-/* harmony import */ var vuetify_dist_vuetify_min_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(vuetify_dist_vuetify_min_css__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./store */ "./resources/js/store/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_9__);
-
-
+/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./router */ "./resources/js/router.js");
+/* harmony import */ var vuetify__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuetify */ "./node_modules/vuetify/dist/vuetify.js");
+/* harmony import */ var vuetify__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vuetify__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var vuetify_dist_vuetify_min_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/dist/vuetify.min.css */ "./node_modules/vuetify/dist/vuetify.min.css");
+/* harmony import */ var vuetify_dist_vuetify_min_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vuetify_dist_vuetify_min_css__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _utils_axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./utils/axios */ "./resources/js/utils/axios.js");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./store */ "./resources/js/store/index.js");
 
 
 
@@ -61680,174 +61590,26 @@ __webpack_require__.r(__webpack_exports__);
 
 
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_2__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_3__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuetify__WEBPACK_IMPORTED_MODULE_5___default.a);
+vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuetify__WEBPACK_IMPORTED_MODULE_4___default.a);
+vue__WEBPACK_IMPORTED_MODULE_1___default.a.prototype.$http = _utils_axios__WEBPACK_IMPORTED_MODULE_6__["default"];
 var opts = {
   icons: {
-    iconfont: 'mdi' // default - only for display purposes
-
+    iconfont: 'mdi'
   }
 };
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-
-vue__WEBPACK_IMPORTED_MODULE_1___default.a.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_1___default.a.component('login-auth', __webpack_require__(/*! ./pages/auth/Login.vue */ "./resources/js/pages/auth/Login.vue")["default"]);
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_3__["default"](_routes__WEBPACK_IMPORTED_MODULE_4__["default"]);
-router.beforeEach(function (to, from, next) {
-  if (to.path === '/login' && localStorage.getItem('laravel_token') !== null) {
-    next({
-      path: '/admin'
-    });
-  } else if (to.matched.some(function (record) {
-    return record.meta.requiresAuth;
-  })) {
-    axios__WEBPACK_IMPORTED_MODULE_9___default.a.get('/user', {
-      headers: {
-        'Authorization': "Bearer ".concat(localStorage.getItem('laravel_token'))
-      }
-    }).then(function () {
-      return next();
-    })["catch"](function (error) {
-      if (error.response.status === 401) {
-        localStorage.removeItem('laravel_token');
-        next({
-          path: '/login'
-        });
-      } else {
-        next();
-      }
-    });
-  } else {
-    next();
+_router__WEBPACK_IMPORTED_MODULE_3__["default"].beforeEach(function (to, from, next) {
+  if (to.path !== '/login' && !localStorage.getItem('laravel_token')) {
+    next('/login');
   }
+
+  next();
 });
 new vue__WEBPACK_IMPORTED_MODULE_1___default.a({
   el: '#app',
-  store: _store__WEBPACK_IMPORTED_MODULE_8__["default"],
-  router: router,
-  vuetify: new vuetify__WEBPACK_IMPORTED_MODULE_5___default.a(opts)
+  store: _store__WEBPACK_IMPORTED_MODULE_7__["default"],
+  router: _router__WEBPACK_IMPORTED_MODULE_3__["default"],
+  vuetify: new vuetify__WEBPACK_IMPORTED_MODULE_4___default.a(opts)
 });
-
-/***/ }),
-
-/***/ "./resources/js/bootstrap.js":
-/*!***********************************!*\
-  !*** ./resources/js/bootstrap.js ***!
-  \***********************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
-/**
- * We'll load the axios HTTP library which allows us to easily issue requests
- * to our Laravel back-end. This library automatically handles sending the
- * CSRF token as a header based on the value of the "XSRF" token cookie.
- */
-
-window.axios = axios__WEBPACK_IMPORTED_MODULE_0___default.a;
-axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'; // axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('laravel_token')}`;
-
-axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.baseURL = '/api';
-/**
- * Echo exposes an expressive API for subscribing to channels and listening
- * for events that are broadcast by Laravel. Echo and event broadcasting
- * allows your team to easily build robust real-time web applications.
- */
-// import Echo from 'laravel-echo';
-// window.Pusher = require('pusher-js');
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: process.env.MIX_PUSHER_APP_KEY,
-//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     encrypted: true
-// });
-
-/***/ }),
-
-/***/ "./resources/js/components/ExampleComponent.vue":
-/*!******************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue ***!
-  \******************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
-/* harmony import */ var _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/ExampleComponent.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ExampleComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e& ***!
-  \*************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
 
 /***/ }),
 
@@ -62196,24 +61958,30 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/routes.js":
+/***/ "./resources/js/router.js":
 /*!********************************!*\
-  !*** ./resources/js/routes.js ***!
+  !*** ./resources/js/router.js ***!
   \********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _pages_admin_layouts_App__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./pages/admin/layouts/App */ "./resources/js/pages/admin/layouts/App.vue");
-/* harmony import */ var _pages_auth_Login__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pages/auth/Login */ "./resources/js/pages/auth/Login.vue");
-/* harmony import */ var _pages_admin_Home__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pages/admin/Home */ "./resources/js/pages/admin/Home.vue");
-/* harmony import */ var _pages_admin_About__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/admin/About */ "./resources/js/pages/admin/About.vue");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var _pages_admin_layouts_App__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pages/admin/layouts/App */ "./resources/js/pages/admin/layouts/App.vue");
+/* harmony import */ var _pages_auth_Login__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/auth/Login */ "./resources/js/pages/auth/Login.vue");
+/* harmony import */ var _pages_admin_Home__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/admin/Home */ "./resources/js/pages/admin/Home.vue");
+/* harmony import */ var _pages_admin_About__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/admin/About */ "./resources/js/pages/admin/About.vue");
 
 
 
 
-/* harmony default export */ __webpack_exports__["default"] = ({
+
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
+var routes = {
   mode: 'history',
   routes: [{
     path: '*',
@@ -62222,29 +61990,30 @@ __webpack_require__.r(__webpack_exports__);
     }
   }, {
     path: '/login',
-    component: _pages_auth_Login__WEBPACK_IMPORTED_MODULE_1__["default"]
+    component: _pages_auth_Login__WEBPACK_IMPORTED_MODULE_3__["default"]
   }, {
     name: 'admin',
     path: '/admin',
-    component: _pages_admin_layouts_App__WEBPACK_IMPORTED_MODULE_0__["default"],
+    component: _pages_admin_layouts_App__WEBPACK_IMPORTED_MODULE_2__["default"],
     meta: {
       requiresAuth: true
     },
     children: [{
       path: 'home',
-      component: _pages_admin_Home__WEBPACK_IMPORTED_MODULE_2__["default"],
+      component: _pages_admin_Home__WEBPACK_IMPORTED_MODULE_4__["default"],
       meta: {
         requiresAuth: true
       }
     }, {
       path: 'about',
-      component: _pages_admin_About__WEBPACK_IMPORTED_MODULE_3__["default"],
+      component: _pages_admin_About__WEBPACK_IMPORTED_MODULE_5__["default"],
       meta: {
         requiresAuth: true
       }
     }]
   }]
-});
+};
+/* harmony default export */ __webpack_exports__["default"] = (new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"](routes));
 
 /***/ }),
 
@@ -62355,6 +62124,94 @@ var actions = {
   actions: actions,
   mutations: mutations
 });
+
+/***/ }),
+
+/***/ "./resources/js/utils/axios.js":
+/*!*************************************!*\
+  !*** ./resources/js/utils/axios.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../router */ "./resources/js/router.js");
+var _this = undefined;
+
+/* eslint-disable no-irregular-whitespace */
+
+
+/**
+ * 跳轉登錄頁
+ * 攜帶當前頁面路由，以期在登錄頁面完成登錄後返回當前頁面
+ */
+
+var toLogin = function toLogin() {
+  _router__WEBPACK_IMPORTED_MODULE_1__["default"].replace({
+    path: '/login',
+    query: {
+      redirect: _router__WEBPACK_IMPORTED_MODULE_1__["default"].currentRoute.fullPath
+    }
+  });
+};
+
+var errorHandle = function errorHandle(status, other) {
+  switch (status) {
+    // 401: 未登入狀態，跳轉登入頁
+    case 401:
+      console.log('401: 未登入狀態，跳轉登入頁');
+      toLogin();
+      break;
+    // 403: 權限不足，未經授權訪問
+
+    case 403:
+      break;
+    // 404: 請求不存在
+
+    case 404:
+      _this.$store.dispatch('snackbar/open', {
+        color: 'warning',
+        text: '請求的資源不存在'
+      });
+
+      break;
+    // 419: token 過期
+
+    case 419:
+      _this.$store.dispatch('snackbar/open', {
+        color: 'warning',
+        text: 'token 過期，請重新刷新'
+      });
+
+      break;
+
+    default:
+      console.log(other);
+      break;
+  }
+};
+
+var instance = axios__WEBPACK_IMPORTED_MODULE_0___default.a.create({
+  baseURL: '/api'
+});
+instance.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+instance.interceptors.request.use(function (config) {
+  var token = localStorage.getItem('laravel_token');
+  token && (config.headers.Authorization = "Bearer ".concat(token));
+  return config;
+}, function (error) {
+  return Promise.error(error);
+});
+instance.interceptors.response.use(function (response) {
+  return response;
+}, function (error) {
+  errorHandle(error.response.status, error.response.data.message);
+  return Promise.reject(error);
+});
+/* harmony default export */ __webpack_exports__["default"] = (instance);
 
 /***/ }),
 
