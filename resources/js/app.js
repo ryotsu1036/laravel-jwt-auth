@@ -19,7 +19,7 @@ const opts = {
 };
 
 router.beforeEach((to, from, next) => {
-  if (to.path !== '/login' && ! localStorage.getItem('laravel_token')) {
+  if (to.meta.requiresAuth && ! localStorage.getItem('laravel_token')) {
     next('/login');
   }
   next();
